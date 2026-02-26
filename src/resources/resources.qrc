@@ -1,0 +1,5 @@
+<RCC>
+	<qresource prefix="/">
+		<file>llm-o-meter.svg</file>
+	</qresource>
+</RCC>

@@ -1,0 +1,27 @@
+#pragma once
+
+#include <QApplication>
+#include <QCheckBox>
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QMap>
+#include <QFile>
+#include <QIcon>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QMenu>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QPainter>
+#include <QPixmap>
+#include <QLabel>
+#include <QProgressBar>
+#include <QScreen>
+#include <QSettings>
+#include <QSpinBox>
+#include <QSystemTrayIcon>
+#include <QTimer>
+#include <QUrl>

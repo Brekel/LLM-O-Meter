@@ -1,0 +1,38 @@
+BasedOnStyle: Google
+
+# --- Formatting & Indentation ---
+IndentWidth: 4
+TabWidth: 4             # Must match IndentWidth for correct tab display
+UseTab: Always          # Enables Tabs instead of Spaces
+ColumnLimit: 0          # 0 = "Infinite" line length (no automatic wrapping)
+AccessModifierOffset: -4
+
+# --- Braces & Newlines ---
+BreakBeforeBraces: Allman
+AllowAllArgumentsOnNextLine: true
+
+# --- Single Line Rules ---
+# "All" is more permissive than "Inline"; allows free-standing functions on one line
+AllowShortFunctionsOnASingleLine: All 
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLambdasOnASingleLine: All
+
+# --- Alignment (Vertical alignment of code) ---
+# These force items to line up vertically in columns
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments: true
+AlignConsecutiveBitFields: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: true
+AlignConsecutiveShortCaseStatements: true
+AlignTrailingComments: true
+
+# --- Spacing ---
+SpaceAfterCStyleCast: false
+MaxEmptyLinesToKeep: 2
+SeparateDefinitionBlocks: Always
+
+# Removes space in "if (...)" -> "if(...)"
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: false

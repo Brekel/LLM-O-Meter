@@ -1,0 +1,4 @@
+// Windows resource file — embeds the application icon into the EXE.
+// RC ID 1 with type RT_GROUP_ICON (ICON) is what Windows Explorer and
+// the taskbar/Alt-Tab switcher read for the executable's icon.
+IDI_ICON1 ICON "llm-o-meter.ico"
