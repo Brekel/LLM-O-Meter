@@ -7,12 +7,12 @@
 ;--------------------------------
 ; publisher
 ;--------------------------------
-VIProductVersion					"1.0.0.0"
+VIProductVersion					"1.0.1.0"
 VIAddVersionKey "ProductName"		"LLM-O-Meter"
 VIAddVersionKey "CompanyName"		"Brekel"
 VIAddVersionKey "LegalCopyright"	"(c) Brekel"
 VIAddVersionKey "FileDescription"	"LLM-O-Meter - Display your Claude Code and Google AntiGravity usage in the tray"
-VIAddVersionKey "FileVersion"		"1.0.0"
+VIAddVersionKey "FileVersion"		"1.0.1"
 
 
 ;--------------------------------
@@ -21,7 +21,7 @@ VIAddVersionKey "FileVersion"		"1.0.0"
 ; name and file
 Unicode true
 Name "LLM-O-Meter"
-OutFile "LLM-O-Meter Windows Installer.exe"
+OutFile "LLM-O-Meter Windows Setup v1.01.exe"
 
 ; default installation folder
 InstallDir "$PROGRAMFILES64\LLM-O-Meter"

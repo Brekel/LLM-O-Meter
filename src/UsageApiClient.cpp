@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "UsageApiClient.h"
 
+#ifdef Q_OS_WIN
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <tlhelp32.h>
+#elif defined(Q_OS_MAC)
+#include <QProcess>
+#endif
+
 UsageApiClient::UsageApiClient(const QString &token, QObject *parent)
 	: QObject(parent), authToken(token)
 {
@@ -11,8 +19,53 @@ UsageApiClient::UsageApiClient(const QString &token, QObject *parent)
 	connect(pollTimer, &QTimer::timeout, this, &UsageApiClient::fetchUsage);
 }
 
+bool UsageApiClient::isClaudeRunning()
+{
+#ifdef Q_OS_WIN
+	HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if(hSnap == INVALID_HANDLE_VALUE)
+	{
+		qWarning() << "[Claude] CreateToolhelp32Snapshot failed";
+		return false;
+	}
+
+	bool       found = false;
+	PROCESSENTRY32W pe{};
+	pe.dwSize = sizeof(pe);
+
+	if(Process32FirstW(hSnap, &pe))
+	{
+		do
+		{
+			if(_wcsicmp(pe.szExeFile, L"claude.exe") == 0)
+			{
+				found = true;
+				break;
+			}
+		} while(Process32NextW(hSnap, &pe));
+	}
+
+	CloseHandle(hSnap);
+	return found;
+#elif defined(Q_OS_MAC)
+	QProcess ps;
+	ps.start("pgrep", QStringList() << "-x" << "claude");
+	if(!ps.waitForFinished(3000))
+		return false;
+	return ps.exitCode() == 0;
+#else
+	return true; // unsupported platform — assume running
+#endif
+}
+
 void UsageApiClient::fetchUsage()
 {
+	if(!isClaudeRunning())
+	{
+		qDebug() << "[Claude] Process not running — skipping usage fetch";
+		return;
+	}
+
 	QNetworkRequest request{QUrl{ApiUrl}};
 	request.setRawHeader("Authorization", ("Bearer " + authToken).toUtf8());
 	request.setRawHeader("anthropic-beta", "oauth-2025-04-20");

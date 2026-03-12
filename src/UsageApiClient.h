@@ -30,6 +30,7 @@ private slots:
 
 private:
 	UsageBucket parseBucket(const QJsonObject &obj) const;
+	static bool isClaudeRunning();
 
 	QNetworkAccessManager *networkManager;
 	QTimer                *pollTimer;
